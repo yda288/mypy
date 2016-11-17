@@ -694,6 +694,7 @@ def f(*a: BaseException) -> int:
     except BaseException as err: pass
     try: pass
     except BaseException as err: f(err)
+    return 0
 x = f()
 [builtins fixtures/exception.pyi]
 
@@ -704,6 +705,7 @@ def f(*a: BaseException) -> int:
     x
     try: pass
     except BaseException as err: f(err)
+    return 0
 x = f()
 [builtins fixtures/exception.pyi]
 
@@ -714,6 +716,7 @@ def f(*a: BaseException) -> int:
     try: pass
     except BaseException as err: f(err)
     x
+    return 0
 x = f()
 [builtins fixtures/exception.pyi]
 
@@ -734,6 +737,7 @@ def f(*arg: BaseException) -> int:
         f(err)
         b = err.b
         reveal_type(b)
+    return 0
 x = f()
 [builtins fixtures/exception.pyi]
 [out]
@@ -758,6 +762,7 @@ def f(*arg: BaseException) -> int:
         f(err)
         b = err.b
         reveal_type(b)
+    return 0
 x = f()
 [builtins fixtures/exception.pyi]
 [out]
@@ -782,6 +787,7 @@ def f(*arg: BaseException) -> int:
         b = err.b
         reveal_type(b)
     x
+    return 0
 x = f()
 [builtins fixtures/exception.pyi]
 [out]
