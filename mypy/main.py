@@ -210,7 +210,6 @@ def process_options(args: List[str],
                         dest='special-opts:find_occurrences',
                         help="print out all usages of a class member (experimental)")
 
-
     # on by default
     parser.add_argument('--warn-no-return', action='store_true', help=argparse.SUPPRESS)
     parser.add_argument('--no-warn-no-return', action='store_false', dest='warn_no_return',

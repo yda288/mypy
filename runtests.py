@@ -167,7 +167,7 @@ def add_basic(driver: Driver) -> None:
     driver.add_flake8('file setup.py', 'setup.py')
     driver.add_mypy('file runtests.py', 'runtests.py')
     driver.add_flake8('file runtests.py', 'runtests.py')
-    driver.add_mypy('legacy entry script', 'scripts/mypy')
+    driver.add_mypy('legacy entry script', '--fast-parser', 'scripts/mypy')
     driver.add_flake8('legacy entry script', 'scripts/mypy')
     driver.add_mypy('legacy myunit script', 'scripts/myunit')
     driver.add_flake8('legacy myunit script', 'scripts/myunit')
