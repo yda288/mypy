@@ -31,7 +31,7 @@ from mypy.types import (
     Type, AnyType, CallableType, Void, FunctionLike, Overloaded, TupleType,
     Instance, NoneTyp, ErrorType, strip_type, TypeType,
     UnionType, TypeVarId, TypeVarType, PartialType, DeletedType, UninhabitedType,
-    true_only, false_only, function_type
+    true_only, false_only, function_type, is_named_instance
 )
 from mypy.sametypes import is_same_type
 from mypy.messages import MessageBuilder
@@ -650,6 +650,7 @@ class TypeChecker(NodeVisitor[Type]):
 
             if (self.options.warn_no_return and not unreachable
                     and not isinstance(self.return_types[-1], (Void, NoneTyp, AnyType))
+                    and not is_named_instance(self.return_types[-1], 'typing.AwaitableGenerator')
                     and not defn.is_generator):
                 # Control flow fell off the end of a function that was
                 # declared to return a non-None type.
