@@ -17,6 +17,7 @@ from mypy.nodes import (
 from mypy import experiments
 from mypy.sharedparse import argument_elide_name
 
+from mypy.boostmappings import mappings
 
 T = TypeVar('T')
 
@@ -441,6 +442,7 @@ class Instance(Type):
                 }  # type: JsonDict
         assert self.type is not None
         data['type_ref'] = self.type.alt_fullname or self.type.fullname()
+        data['boost_map'] = mappings.get(data['type_ref'], None)
         if self.args:
             data['args'] = [arg.serialize() for arg in self.args]
         return data
@@ -878,6 +880,7 @@ class TupleType(Type):
                 'items': [t.serialize() for t in self.items],
                 'fallback': self.fallback.serialize(),
                 'implicit': self.implicit,
+                'boost_map' : self.fallback.serialize()['boost_map'] ##extra level deep
                 }
 
     @classmethod
